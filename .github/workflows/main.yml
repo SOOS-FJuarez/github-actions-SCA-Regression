@@ -24,8 +24,8 @@ jobs:
         files_to_exclude: 'manifests/node/npm/package.json, **/ruby/GEMFILE, invalid/package.json'
         branch_name: "test-branch" 
         output_format: SARIF 
+        sca_version: 4.0.5-pre.1
     - name: Upload SOOS SARIF Report
       uses: github/codeql-action/upload-sarif@v3
       with:
         sarif_file: results.sarif
-        sca_version: 4.0.5-pre.1
