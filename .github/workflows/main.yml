@@ -6,18 +6,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Run SOOS - Scan for vulnerabilities
-      uses: soos-io/soos-sca-github-action@070148fd93ad76183d79aa793944ee3ec0646acd  #Get Latest Version from https://github.com/marketplace/actions/soos-core-sca
+    - uses: actions/setup-node@v4
       with:
-        project_name: "GitHub/Actions - SCA v2.1.3"  
+        node-version: 20
+    - name: Run SOOS - Scan for vulnerabilities
+      uses: soos-io/soos-sca-github-action@vX #Get Latest Version from https://github.com/marketplace/actions/soos-core-sca
+      with:
+        project_name: "GitHub Actions - SCA v2.1.3"  
         client_id: ${{ secrets.SOOS_CLIENT_ID }}
         api_key: ${{ secrets.SOOS_API_KEY }}
         api_url: 'https://qa-api.soos.io/api/'
-        log_level: "WARN"
-        package_managers: "Go,Homebrew,Java,NPM,NuGet,Python"
-        on_failure: "fail_the_build"
-        directories_to_exclude: '**/go files/**'
-        files_to_exclude: '**/package.json'
-        build_version: 2.0.0
-        sca_version: 4.0.5-pre.1
-        verbose: true
+        log_level: "DEBUG"
+        directories_to_exclude: 'manifests/java/**, manifests/PHP/**, invalid/**'
+        files_to_exclude: 'manifests/node/npm/package.json, **/ruby/GEMFILE, invalid/package.json'
+        branch_name: "test-branch" 
+        output_format: SARIF 
