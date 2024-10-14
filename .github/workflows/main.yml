@@ -2,6 +2,9 @@ on: [push]
 
 jobs:
   synchronous-analysis-with-blocking-result:
+    permissions:
+      security-events: write # for uploading code scanning alert info
+      actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status  
     name: SOOS SCA Scan
     runs-on: ubuntu-latest
     steps:
@@ -21,4 +24,8 @@ jobs:
         files_to_exclude: 'manifests/node/npm/package.json, **/ruby/GEMFILE, invalid/package.json'
         branch_name: "test-branch" 
         output_format: SARIF 
+    - name: Upload SOOS SARIF Report
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: results.sarif
         sca_version: 4.0.5-pre.1
