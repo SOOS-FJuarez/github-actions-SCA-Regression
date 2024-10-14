@@ -10,8 +10,8 @@ jobs:
       uses: soos-io/soos-sca-github-action@070148fd93ad76183d79aa793944ee3ec0646acd  # Get Latest Version from https://github.com/marketplace/actions/soos-core-sca
       with:
         project_name: "Test-SCA-GH-Actions"
-        client_id: other
-        #client_id: ${{ secrets.SOOS_CLIENT_ID }}
+        client_id: ${{ secrets.SOOS_CLIENT_ID }}
         api_key: ${{ secrets.SOOS_API_KEY }}
         api_url: "https://qa-api.soos.io/api/"
+        output_format: "invalid"
         sca_version: 4.0.4-pre.1
