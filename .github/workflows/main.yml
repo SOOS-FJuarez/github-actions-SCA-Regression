@@ -13,5 +13,5 @@ jobs:
         client_id: ${{ secrets.SOOS_CLIENT_ID }}
         api_key: ${{ secrets.SOOS_API_KEY }}
         api_url: "https://qa-api.soos.io/api/"
-        output_format: "invalid"
-        sca_version: 4.0.4-pre.1
+        output_format: "NONE"
+        sca_version: 4.0.5-pre.1
