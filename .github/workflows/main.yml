@@ -1,18 +1,17 @@
 on: [push]
 
 jobs:
-  soos-sca-analysis:
+  synchronous-analysis-with-blocking-result:
     name: SOOS SCA Scan
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
     - name: Run SOOS - Scan for vulnerabilities
-      uses: soos-io/soos-sca-github-action@070148fd93ad76183d79aa793944ee3ec0646acd  # Get Latest Version from https://github.com/marketplace/actions/soos-core-sca
+      uses: soos-io/soos-sca-github-action@070148fd93ad76183d79aa793944ee3ec0646acd  #Get Latest Version from https://github.com/marketplace/actions/soos-core-sca
       with:
-        project_name: "Test-SCA-GH-Actions"
+        project_name: "GitHub Actions - SCA"  
         client_id: ${{ secrets.SOOS_CLIENT_ID }}
         api_key: ${{ secrets.SOOS_API_KEY }}
-        api_url: "https://qa-api.soos.io/api/"
-        build_version: ""
+        api_url: 'https://qa-api.soos.io/api/'
+        branch_name: "test-main"
         sca_version: 4.0.5-pre.1
-        log_level: DEBUG
